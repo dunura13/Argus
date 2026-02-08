@@ -1,14 +1,27 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { HUDPanel } from "./HUDPanel";
 
 export function AIChat() {
+  const [openedAt, setOpenedAt] = useState("");
+
+  useEffect(() => {
+    const now = new Date();
+    setOpenedAt(
+      now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      })
+    );
+  }, []);
+
   return (
     <HUDPanel title="AI Assistant" subtitle="Argus search system online">
       <div className="space-y-3">
         <div className="rounded border border-cyber-cyan/20 bg-black/40 p-3 text-xs text-white/80">
           How can I assist you?
-          <div className="mt-2 text-[10px] text-white/40">10:16 PM</div>
+          <div className="mt-2 text-[10px] text-white/40">{openedAt}</div>
         </div>
         <div className="rounded border border-cyber-cyan/20 bg-black/30 px-3 py-2 text-xs text-white/50">
           Type a message...
