@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "name": "AegisOps",
+    "description": "We build AI-powered cybersecurity platforms that help government agencies detect and respond to threats in real-time. Our SOC automation reduces incident response time by 80%."
+  },
+  {
+    "id": 2,
+    "name": "CloudBridge",
+    "description": "We provide secure cloud migration and disaster recovery tooling tailored for public sector IT teams."
+  }
+]

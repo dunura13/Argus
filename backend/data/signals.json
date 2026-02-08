@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "city": "Austin",
+    "state": "TX",
+    "lat": 30.2672,
+    "lng": -97.7431,
+    "category": "Cybersecurity",
+    "title": "SOC Platform Modernization",
+    "description": "City council approved $1.5M for security operations center modernization, emphasizing AI-powered threat detection and automated incident response.",
+    "budget": 1500000,
+    "timeline": "Q2 2024",
+    "source": "City Council Minutes - Jan 2024",
+    "stakeholders": ["John Smith (IT Director) - jsmith@austintexas.gov"],
+    "keywords": ["SOC", "SIEM", "security", "monitoring", "automation"]
+  },
+  {
+    "id": 2,
+    "city": "San Francisco",
+    "state": "CA",
+    "lat": 37.7749,
+    "lng": -122.4194,
+    "category": "Cloud Infrastructure",
+    "title": "Legacy Systems Migration",
+    "description": "Department initiative to migrate legacy infrastructure to a secure cloud platform and improve disaster recovery.",
+    "budget": 2200000,
+    "timeline": "Q3 2024",
+    "source": "IT Strategic Plan - Feb 2024",
+    "stakeholders": ["Priya Patel (CIO) - ppatel@sfgov.org"],
+    "keywords": ["cloud", "migration", "disaster recovery", "infrastructure"]
+  }
+]
