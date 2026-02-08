@@ -43,8 +43,6 @@ interface Earth3DProps {
 
 const EARTH_TEXTURE =
   "https://threejs.org/examples/textures/planets/earth_atmos_2048.jpg";
-const EARTH_BUMP =
-  "https://threejs.org/examples/textures/planets/earth_normal_2048.jpg";
 const EARTH_RADIUS = 0.9;
 
 function latLngToVector3(lat: number, lng: number, radius: number) {
@@ -576,21 +574,18 @@ function LandDots({ map }: { map: HTMLImageElement | null }) {
 
 function EarthGlobe() {
   const meshRef = useRef<Mesh>(null);
-  const [colorMap, normalMap] = useLoader(TextureLoader, [
-    EARTH_TEXTURE,
-    EARTH_BUMP,
-  ]);
+  const [colorMap] = useLoader(TextureLoader, [EARTH_TEXTURE]);
 
   return (
     <>
+      {/* Near-invisible sphere — just enough to hint at shape */}
       <mesh ref={meshRef} raycast={() => null}>
         <sphereGeometry args={[EARTH_RADIUS, 64, 64]} />
         <meshStandardMaterial
-          map={colorMap}
-          normalMap={normalMap}
-          metalness={0.15}
-          roughness={0.9}
-          color="#050A12"
+          color="#111827"
+          transparent
+          opacity={0.03}
+          depthWrite={false}
         />
       </mesh>
       <LandDots map={colorMap?.image ?? null} />

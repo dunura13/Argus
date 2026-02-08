@@ -240,7 +240,7 @@ export function ArgusDashboard() {
       {isLoading && <div className="search-progress-line relative z-10" />}
 
       {/* ─── Three-Column Layout ────────────────────────────────── */}
-      <div className="relative z-10 flex flex-1 min-h-0">
+      <div className="relative z-10 flex flex-1 min-h-0 p-3">
         {/* ─── Left Sidebar ───────────────────────────────────── */}
         <aside className="flex w-[240px] flex-shrink-0 flex-col border-r border-gray-800 overflow-y-auto">
           <LoginPanel />
@@ -402,59 +402,6 @@ export function ArgusDashboard() {
             </div>
           </HUDPanel>
 
-          {/* Match Breakdown */}
-          <HUDPanel title="Match Breakdown" indicator="orange">
-            <div className="space-y-3">
-              <div>
-                <div className="mb-1.5 flex items-center gap-2 text-[10px]">
-                  <span className="panel-indicator panel-indicator-green" style={{ width: 6, height: 6 }} />
-                  <span className="uppercase tracking-wider text-gray-500">
-                    High Engagement
-                  </span>
-                  <span className="ml-auto text-gray-400 panel-value">
-                    {matchDistribution.high}
-                  </span>
-                </div>
-                <SegmentBar
-                  value={matchDistribution.high}
-                  max={Math.max(matches.length, 1)}
-                />
-              </div>
-              <div>
-                <div className="mb-1.5 flex items-center gap-2 text-[10px]">
-                  <span className="panel-indicator panel-indicator-orange" style={{ width: 6, height: 6 }} />
-                  <span className="uppercase tracking-wider text-gray-500">
-                    Medium Engagement
-                  </span>
-                  <span className="ml-auto text-gray-400 panel-value">
-                    {matchDistribution.medium}
-                  </span>
-                </div>
-                <SegmentBar
-                  value={matchDistribution.medium}
-                  max={Math.max(matches.length, 1)}
-                  color="filled-orange"
-                />
-              </div>
-              <div>
-                <div className="mb-1.5 flex items-center gap-2 text-[10px]">
-                  <span className="panel-indicator panel-indicator-red" style={{ width: 6, height: 6 }} />
-                  <span className="uppercase tracking-wider text-gray-500">
-                    Low Engagement
-                  </span>
-                  <span className="ml-auto text-gray-400 panel-value">
-                    {matchDistribution.low}
-                  </span>
-                </div>
-                <SegmentBar
-                  value={matchDistribution.low}
-                  max={Math.max(matches.length, 1)}
-                  color="filled-blue"
-                />
-              </div>
-            </div>
-          </HUDPanel>
-
           {/* Signal Detail */}
           <HUDPanel
             title="Signal Detail"
@@ -524,6 +471,25 @@ export function ArgusDashboard() {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                )}
+                {activeMatch.signal.source_url && (
+                  <div>
+                    <div className="mb-1 text-[10px] text-gray-600 uppercase tracking-wider">
+                      Source
+                    </div>
+                    <a
+                      href={activeMatch.signal.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors truncate"
+                    >
+                      {new URL(activeMatch.signal.source_url).hostname.replace(
+                        /^www\./,
+                        "",
+                      )}
+                      <span className="text-[9px] text-gray-600">&nearr;</span>
+                    </a>
                   </div>
                 )}
                 <button
