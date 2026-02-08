@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
   color-scheme: dark;
 }
+
 
 html, body {
   height: 100%;
