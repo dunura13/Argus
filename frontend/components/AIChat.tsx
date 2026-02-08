@@ -3,7 +3,21 @@
 import { useEffect, useState } from "react";
 import { HUDPanel } from "./HUDPanel";
 
-export function AIChat() {
+interface AIChatProps {
+  value: string;
+  onChange: (value: string) => void;
+  onSubmit: () => void;
+  loading?: boolean;
+  error?: string | null;
+}
+
+export function AIChat({
+  value,
+  onChange,
+  onSubmit,
+  loading,
+  error,
+}: AIChatProps) {
   const [openedAt, setOpenedAt] = useState("");
 
   useEffect(() => {
@@ -11,8 +25,8 @@ export function AIChat() {
     setOpenedAt(
       now.toLocaleTimeString([], {
         hour: "2-digit",
-        minute: "2-digit"
-      })
+        minute: "2-digit",
+      }),
     );
   }, []);
 
@@ -20,18 +34,32 @@ export function AIChat() {
     <HUDPanel title="AI Assistant" subtitle="Argus search system online">
       <div className="space-y-3">
         <div className="rounded border border-cyber-cyan/20 bg-black/40 p-3 text-xs text-white/80">
-          How can I assist you?
+          Hello, how can I assist you?
           <div className="mt-2 text-[10px] text-white/40">{openedAt}</div>
         </div>
         <div className="rounded border border-cyber-cyan/20 bg-black/30 px-3 py-2">
-          <input
-            className="w-full bg-transparent text-xs text-white placeholder:text-white/50 focus:outline-none"
+          <textarea
+            className="w-full resize-none bg-transparent text-xs text-white placeholder:text-white/50 focus:outline-none"
+            rows={3}
             placeholder="Type a message..."
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+                event.preventDefault();
+                onSubmit();
+              }
+            }}
           />
         </div>
+        {error ? <div className="text-[10px] text-red-300">{error}</div> : null}
         <div className="flex justify-end">
-          <button className="rounded border border-cyber-cyan/40 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-cyber-cyan">
-            Send
+          <button
+            className="rounded border border-cyber-cyan/40 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-cyber-cyan disabled:cursor-not-allowed disabled:opacity-50"
+            onClick={onSubmit}
+            disabled={loading || value.trim().length === 0}
+          >
+            {loading ? "Searching..." : "Send"}
           </button>
         </div>
       </div>
